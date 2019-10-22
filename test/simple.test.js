@@ -4,19 +4,22 @@ const expect = require('chai').expect;
 // Main Module
 const PodDealingService = require('../lib/main');
 
-let apiToken = 'API TOKEN';
-let accessToken = 'ACCESS TOKEN';
+let apiToken = 'e801898dced840248b0325facb863d8b';
 let guildCode = 'INFORMATION_TECHNOLOGY_GUILD';
-let podDealingService = new PodDealingService({});
-// 4766
+let podDealingService = new PodDealingService({
+  apiToken: apiToken
+});
+// let accessToken = 'ACCESS TOKEN';
+let otherBizId = 3612;
+let productId = 15530;
+
 // #1
 describe('API: addUserAndBusiness ', function () {
   this.timeout(10000);
   let addUserAndBusinessData = {
     // ------ REQUIRED ------
-    _token_: apiToken,
-    username: 'USERNAME2',
-    businessName: 'NAME23',
+    username: 'USERNAME21020',
+    businessName: 'NAME230026',
     email: 'TEST2@TEST.COM',
     guildCode: [guildCode],
     country: 'COUNTRY',
@@ -29,7 +32,6 @@ describe('API: addUserAndBusiness ', function () {
     agentCellphoneNumber: '09151111111'
 
     // ------ OPTIONAL ------
-    // _token_issuer_: 1
     // firstName: 'FIRST NAME'
     // lastName: 'LAST NAME'
     // sheba: 'SHEBA WITHOUT IR'
@@ -51,11 +53,14 @@ describe('API: addUserAndBusiness ', function () {
     // lat: 0
     // lng: 0
     // agentNationalCode: 'CODE'
+    // scVoucherHash: ['HASH#1', 'HASH#2']
+    // token: 'API TOKEN'
+    // tokenIssuer: 0 | 1
   };
   it('correct request', function (done) {
     podDealingService.addUserAndBusiness(addUserAndBusinessData)
       .then(function (result) {
-        console.log(result);
+        console.log(JSON.stringify(result, null, 2));
         expect(result).to.have.property('hasError', false);
         expect(result).to.have.property('ott');
         done();
@@ -72,14 +77,12 @@ describe('API: listUserCreatedBusiness ', function () {
   this.timeout(10000);
   let listUserCreatedBusinessData = {
     // ------ REQUIRED ------
-    _token_: apiToken
 
     // ------ OPTIONAL ------
-    // _token_issuer_: 1
-    // bizId: ID
-    // guildCode: 'GUILD CODE'
-    // offset: OFFSET
-    // size: SIZE
+    bizId: [5605],
+    guildCode: [guildCode]
+    // offset: 0
+    // size: 0
     // query: 'query'
     // tags: ['TAG1', 'TAG2']
     // tagTrees: ['TREE1', 'TREE2']
@@ -92,11 +95,14 @@ describe('API: listUserCreatedBusiness ', function () {
     // nationalCode: 'CODE'
     // email: 'TEST@TEST.COM'
     // cellphone: 'MOPBILE'
+    // scVoucherHash: ['HASH#1', 'HASH#2']
+    // token: 'API TOKEN'
+    // tokenIssuer: 0 | 1
   };
   it('correct request', function (done) {
     podDealingService.listUserCreatedBusiness(listUserCreatedBusinessData)
       .then(function (result) {
-        console.log(result);
+        console.log(result, '=======', result.result.length, '=======', result.count);
         expect(result).to.have.property('hasError', false);
         expect(result).to.have.property('result');
         done();
@@ -113,9 +119,8 @@ describe('API: updateBusiness ', function () {
   this.timeout(10000);
   let updateBusinessData = {
     // ------ REQUIRED ------
-    _token_: apiToken,
     bizId: 4766,
-    businessName: 'NAME22222',
+    businessName: 'NAME!!!!',
     guildCode: [guildCode, 'TOILETRIES_GUILD'],
     country: 'COUNTRY',
     state: 'STATE',
@@ -124,7 +129,6 @@ describe('API: updateBusiness ', function () {
     description: 'DESCRIPTION'
 
     // ------ OPTIONAL ------
-    // _token_issuer_: 1
     // companyName: 'COMPANY NAME'
     // shopName: 'NAME'
     // shopNameEn: 'NAME'
@@ -141,9 +145,9 @@ describe('API: updateBusiness ', function () {
     // phone: 'PHONE'
     // fax: 'FAX'
     // postalCode: 'CODE'
-    // changeLogo: true | false
+    // changeLogo: true,
     // changeCover: true | false
-    // logoImage: 'IMAGE'
+    // logoImage: 'IMAGE!!!@@'
     // coverImage: 'IMAGE'
     // tags: 'TAG1, TAG2'
     // tagTrees: 'TREE1, TREE2'
@@ -156,6 +160,9 @@ describe('API: updateBusiness ', function () {
     // agentCellphoneNumber: 'MOBILE'
     // agentNationalCode: 'CODE'
     // changeAgent: true | false
+    // scVoucherHash: ['HASH#1', 'HASH#2']
+    // token: 'API TOKEN'
+    // tokenIssuer: 0 | 1
   };
   it('correct request', function (done) {
     podDealingService.updateBusiness(updateBusinessData)
@@ -177,11 +184,12 @@ describe('API: getApiTokenForCreatedBusiness ', function () {
   this.timeout(10000);
   let getApiTokenForCreatedBusinessData = {
     // ------ REQUIRED ------
-    _token_: apiToken,
     businessId: 4766
 
     // ------ OPTIONAL ------
-    // _token_issuer_: 1
+    // scVoucherHash: ['HASH#1', 'HASH#2']
+    // token: 'API TOKEN'
+    // tokenIssuer: 0 | 1
   };
   it('correct request', function (done) {
     podDealingService.getApiTokenForCreatedBusiness(getApiTokenForCreatedBusinessData)
@@ -203,12 +211,13 @@ describe('API: rateBusiness ', function () {
   this.timeout(10000);
   let getApiTokenForCreatedBusinessData = {
     // ------ REQUIRED ------
-    _token_: accessToken,
-    businessId: 4766,
-    rate: 10
+    businessId: 3612,
+    rate: 5
 
     // ------ OPTIONAL ------
-    // _token_issuer_: 1
+    // scVoucherHash: ['HASH#1', 'HASH#2']
+    // token: 'API TOKEN'
+    // tokenIssuer: 0 | 1
   };
   it('correct request', function (done) {
     podDealingService.rateBusiness(getApiTokenForCreatedBusinessData)
@@ -230,13 +239,13 @@ describe('API: commentBusiness ', function () {
   this.timeout(10000);
   let commentBusinessData = {
     // ------ REQUIRED ------
-    _token_: accessToken,
     businessId: 4766,
     text: 'THIS IS MY COMMENT!!!'
 
     // ------ OPTIONAL ------
-    // _token_issuer_: 1
-
+    // scVoucherHash: ['HASH#1', 'HASH#2']
+    // token: 'API TOKEN'
+    // tokenIssuer: 0 | 1
   };
   it('correct request', function (done) {
     podDealingService.commentBusiness(commentBusinessData)
@@ -258,12 +267,13 @@ describe('API: businessFavorite ', function () {
   this.timeout(10000);
   let businessFavoriteData = {
     // ------ REQUIRED ------
-    _token_: accessToken,
     businessId: 4766,
     disfavorite: false
 
     // ------ OPTIONAL ------
-    // _token_issuer_: 1
+    // scVoucherHash: ['HASH#1', 'HASH#2']
+    // token: 'API TOKEN'
+    // tokenIssuer: 0 | 1
   };
   it('correct request', function (done) {
     podDealingService.businessFavorite(businessFavoriteData)
@@ -285,11 +295,12 @@ describe('API: userBusinessInfos ', function () {
   this.timeout(10000);
   let userBusinessInfosData = {
     // ------ REQUIRED ------
-    _token_: apiToken, // or access token
     id: [4766]
 
     // ------ OPTIONAL ------
-    // _token_issuer_: 1
+    // scVoucherHash: ['HASH#1', 'HASH#2']
+    // token: 'API TOKEN'
+    // tokenIssuer: 0 | 1
   };
   it('correct request', function (done) {
     podDealingService.userBusinessInfos(userBusinessInfosData)
@@ -307,19 +318,20 @@ describe('API: userBusinessInfos ', function () {
 });
 
 // #9
-describe.only('API: commentBusinessList ', function () {
+describe('API: commentBusinessList ', function () {
   this.timeout(10000);
   let commentBusinessListData = {
     // ------ REQUIRED ------
-    _token_: apiToken, // or access token
     businessId: 4766,
     offset: 0
 
     // ------ OPTIONAL ------
-    // _token_issuer_: 1
-    // size: SIZE
-    // firstId: ID
-    // lastId: ID
+    // size: 0
+    // firstId: 0
+    // lastId: 0
+    // scVoucherHash: ['HASH#1', 'HASH#2']
+    // token: 'API TOKEN'
+    // tokenIssuer: 0 | 1
   };
   it('correct request', function (done) {
     podDealingService.commentBusinessList(commentBusinessListData)
@@ -337,20 +349,228 @@ describe.only('API: commentBusinessList ', function () {
 });
 
 // #10
-describe.only('API: confirmComment ', function () {
-  this.timeout(10000); // 743 744
+describe('API: confirmComment ', function () {
+  this.timeout(10000);
   let confirmCommentData = {
     // ------ REQUIRED ------
-    _token_: 'c2dcd1855ecd489097fc0f20970cc672',
     commentId: 743
 
     // ------ OPTIONAL ------
-    // _token_issuer_: 1
+    // scVoucherHash: ['HASH#1', 'HASH#2']
+    // token: 'API TOKEN'
+    // tokenIssuer: 0 | 1
   };
   it('correct request', function (done) {
     podDealingService.confirmComment(confirmCommentData)
       .then(function (result) {
         console.log(result);
+        expect(result).to.have.property('hasError', false);
+        expect(result).to.have.property('result');
+        done();
+      })
+      .catch(function (error) {
+        console.log(error);
+        done(new Error());
+      });
+  });
+});
+
+// #11
+describe('API: unconfirmComment ', function () {
+  this.timeout(10000);
+  let unconfirmCommentData = {
+    // ------ REQUIRED ------
+    commentId: 743
+
+    // ------ OPTIONAL ------
+    // scVoucherHash: ['HASH#1', 'HASH#2']
+    // token: 'API TOKEN'
+    // tokenIssuer: 0 | 1
+  };
+  it('correct request', function (done) {
+    podDealingService.unconfirmComment(unconfirmCommentData)
+      .then(function (result) {
+        console.log(result);
+        expect(result).to.have.property('hasError', false);
+        expect(result).to.have.property('result');
+        done();
+      })
+      .catch(function (error) {
+        console.log(error);
+        done(new Error());
+      });
+  });
+});
+
+// #12
+describe('API: addDealer ', function () {
+  this.timeout(10000);
+  it('correct request', function (done) {
+    podDealingService.addDealer({ dealerBizId: otherBizId })
+      .then(function (result) {
+        console.log(result);
+        expect(result).to.have.property('hasError', false);
+        expect(result).to.have.property('result');
+        done();
+      })
+      .catch(function (error) {
+        console.log(error);
+        done(new Error());
+      });
+  });
+});
+
+// #13
+describe('API: dealerList ', function () {
+  this.timeout(10000);
+  it('correct request', function (done) {
+    podDealingService.dealerList({})
+      .then(function (result) {
+        console.log(JSON.stringify(result, null, 2));
+        expect(result).to.have.property('hasError', false);
+        expect(result).to.have.property('result');
+        done();
+      })
+      .catch(function (error) {
+        console.log(error);
+        done(new Error());
+      });
+  });
+});
+
+// #14
+describe('API: enableDealer ', function () {
+  this.timeout(10000);
+  it('correct request', function (done) {
+    podDealingService.enableDealer({ dealerBizId: otherBizId })
+      .then(function (result) {
+        console.log(JSON.stringify(result, null, 2));
+        expect(result).to.have.property('hasError', false);
+        expect(result).to.have.property('result');
+        done();
+      })
+      .catch(function (error) {
+        console.log(error);
+        done(new Error());
+      });
+  });
+});
+
+// #15
+describe('API: disableDealer ', function () {
+  this.timeout(10000);
+  it('correct request', function (done) {
+    podDealingService.disableDealer({ dealerBizId: otherBizId })
+      .then(function (result) {
+        console.log(JSON.stringify(result, null, 2));
+        expect(result).to.have.property('hasError', false);
+        expect(result).to.have.property('result');
+        done();
+      })
+      .catch(function (error) {
+        console.log(error);
+        done(new Error());
+      });
+  });
+});
+
+// #16
+describe('API: businessDealingList ', function () {
+  this.timeout(10000);
+  it('correct request', function (done) {
+    podDealingService.businessDealingList({})
+      .then(function (result) {
+        console.log(JSON.stringify(result, null, 2));
+        expect(result).to.have.property('hasError', false);
+        expect(result).to.have.property('result');
+        done();
+      })
+      .catch(function (error) {
+        console.log(error);
+        done(new Error());
+      });
+  });
+});
+
+// #17
+describe('API: addDealerProductPermission ', function () {
+  this.timeout(10000);
+  it('correct request', function (done) {
+    podDealingService.addDealerProductPermission({ dealerBizId: otherBizId, productId: productId })
+      .then(function (result) {
+        console.log(JSON.stringify(result, null, 2));
+        expect(result).to.have.property('hasError', false);
+        expect(result).to.have.property('result');
+        done();
+      })
+      .catch(function (error) {
+        console.log(error);
+        done(new Error());
+      });
+  });
+});
+
+// #18
+describe('API: dealerProductPermissionList ', function () {
+  this.timeout(10000);
+  it('correct request', function (done) {
+    podDealingService.dealerProductPermissionList({})
+      .then(function (result) {
+        console.log(JSON.stringify(result, null, 2));
+        expect(result).to.have.property('hasError', false);
+        expect(result).to.have.property('result');
+        done();
+      })
+      .catch(function (error) {
+        console.log(error);
+        done(new Error());
+      });
+  });
+});
+
+// #19
+describe('API: dealingProductPermissionList ', function () {
+  this.timeout(10000);
+  it('correct request', function (done) {
+    podDealingService.dealingProductPermissionList({})
+      .then(function (result) {
+        console.log(JSON.stringify(result, null, 2));
+        expect(result).to.have.property('hasError', false);
+        expect(result).to.have.property('result');
+        done();
+      })
+      .catch(function (error) {
+        console.log(error);
+        done(new Error());
+      });
+  });
+});
+
+// #20
+describe('API: disableDealerProductPermission ', function () {
+  this.timeout(10000);
+  it('correct request', function (done) {
+    podDealingService.disableDealerProductPermission({ dealerBizId: otherBizId, productId: productId })
+      .then(function (result) {
+        console.log(JSON.stringify(result, null, 2));
+        expect(result).to.have.property('hasError', false);
+        expect(result).to.have.property('result');
+        done();
+      })
+      .catch(function (error) {
+        console.log(error);
+        done(new Error());
+      });
+  });
+});
+
+// #21
+describe('API: enableDealerProductPermission ', function () {
+  this.timeout(10000);
+  it('correct request', function (done) {
+    podDealingService.enableDealerProductPermission({ dealerBizId: otherBizId, productId: productId })
+      .then(function (result) {
+        console.log(JSON.stringify(result, null, 2));
         expect(result).to.have.property('hasError', false);
         expect(result).to.have.property('result');
         done();

@@ -10,7 +10,6 @@ let podDealingService = new PodDealingService({
 // function: addUserAndBusiness
 let addUserAndBusinessData = {
   // ------ REQUIRED ------
-  _token_: 'API TOKEN',
   username: 'USERNAME',
   businessName: 'NAME',
   email: 'TEST@TEST.COM',
@@ -25,7 +24,6 @@ let addUserAndBusinessData = {
   agentCellphoneNumber: '09151111111'
 
   // ------ OPTIONAL ------
-  // _token_issuer_: 1
   // firstName: 'FIRST NAME'
   // lastName: 'LAST NAME'
   // sheba: 'SHEBA WITHOUT IR'
@@ -47,6 +45,10 @@ let addUserAndBusinessData = {
   // lat: 0
   // lng: 0
   // agentNationalCode: 'CODE'
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
 };
 
 podDealingService.addUserAndBusiness(addUserAndBusinessData)
@@ -62,10 +64,8 @@ podDealingService.addUserAndBusiness(addUserAndBusinessData)
 // function: listUserCreatedBusiness
 let listUserCreatedBusinessData = {
   // ------ REQUIRED ------
-  _token_: 'API TOKEN'
 
   // ------ OPTIONAL ------
-  // _token_issuer_: 1
   // bizId: ID
   // guildCode: 'GUILD CODE'
   // offset: OFFSET
@@ -82,6 +82,10 @@ let listUserCreatedBusinessData = {
   // nationalCode: 'CODE'
   // email: 'TEST@TEST.COM'
   // cellphone: 'MOPBILE'
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
 };
 podDealingService.listUserCreatedBusiness(listUserCreatedBusinessData)
   .then(function (result) {
@@ -96,7 +100,6 @@ podDealingService.listUserCreatedBusiness(listUserCreatedBusinessData)
 // function: updateBusiness
 let updateBusinessData = {
   // ------ REQUIRED ------
-  _token_: 'API TOKEN',
   bizId: 0,
   businessName: 'NAME2',
   guildCode: ['GUILD CODE'],
@@ -107,7 +110,6 @@ let updateBusinessData = {
   description: 'DESCRIPTION'
 
   // ------ OPTIONAL ------
-  // _token_issuer_: 1
   // companyName: 'COMPANY NAME'
   // shopName: 'NAME'
   // shopNameEn: 'NAME'
@@ -139,6 +141,10 @@ let updateBusinessData = {
   // agentCellphoneNumber: 'MOBILE'
   // agentNationalCode: 'CODE'
   // changeAgent: true | false
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
 };
 podDealingService.updateBusiness(updateBusinessData)
   .then(function (result) {
@@ -153,11 +159,13 @@ podDealingService.updateBusiness(updateBusinessData)
 // function: getApiTokenForCreatedBusiness
 let getApiTokenForCreatedBusinessData = {
   // ------ REQUIRED ------
-  _token_: 'API TOKEN',
   businessId: 0
 
   // ------ OPTIONAL ------
-  // _token_issuer_: 1
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
 };
 
 podDealingService.getApiTokenForCreatedBusiness(getApiTokenForCreatedBusinessData)
@@ -173,12 +181,14 @@ podDealingService.getApiTokenForCreatedBusiness(getApiTokenForCreatedBusinessDat
 // function: rateBusiness
 let rateBusinessData = {
   // ------ REQUIRED ------
-  _token_: 'ACCESS TOKEN',
   businessId: 0,
   rate: 0
 
   // ------ OPTIONAL ------
-  // _token_issuer_: 1
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
 };
 
 podDealingService.rateBusiness(rateBusinessData)
@@ -194,13 +204,14 @@ podDealingService.rateBusiness(rateBusinessData)
 // function: commentBusiness
 let commentBusinessData = {
   // ------ REQUIRED ------
-  _token_: 'ACCESS TOKEN',
   businessId: 0,
   text: 'THIS IS MY COMMENT!!!'
 
   // ------ OPTIONAL ------
-  // _token_issuer_: 1
-
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
 };
 
 podDealingService.commentBusiness(commentBusinessData)
@@ -217,12 +228,15 @@ podDealingService.commentBusiness(commentBusinessData)
 
 let businessFavoriteData = {
   // ------ REQUIRED ------
-  _token_: 'ACCESS TOKEN',
   businessId: 0,
   disfavorite: false // or true
 
   // ------ OPTIONAL ------
-  // _token_issuer_: 1
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
+
 };
 podDealingService.businessFavorite(businessFavoriteData)
   .then(function (result) {
@@ -238,11 +252,13 @@ podDealingService.businessFavorite(businessFavoriteData)
 
 let userBusinessInfosData = {
   // ------ REQUIRED ------
-  _token_: 'API TOKEN or ACCESS TOKEN',
   id: [0]
 
   // ------ OPTIONAL ------
-  // _token_issuer_: 1
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
 };
 
 podDealingService.userBusinessInfos(userBusinessInfosData)
@@ -259,18 +275,20 @@ podDealingService.userBusinessInfos(userBusinessInfosData)
 
 let commentBusinessListData = {
   // ------ REQUIRED ------
-  _token_: 'API TOKEN OR ACCESS TOKEN',
   businessId: 0,
   offset: 0
 
   // ------ OPTIONAL ------
-  // _token_issuer_: 1
   // size: SIZE
-  // firstId: ID
-  // lastId: ID
+  // firstId: 0
+  // lastId: 0
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
 };
 
-podDealingService.confirmComment(commentBusinessListData)
+podDealingService.commentBusinessList(commentBusinessListData)
   .then(function (result) {
     console.log('function: commentBusinessList ============>', result, '\n');
   })
@@ -283,16 +301,278 @@ podDealingService.confirmComment(commentBusinessListData)
 // function: confirmComment
 let confirmCommentData = {
   // ------ REQUIRED ------
-  _token_: 'API TOKEN', // API TOKEN OF SUB BUSINESS
   commentId: 0
 
   // ------ OPTIONAL ------
-  // _token_issuer_: 1
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
 };
 podDealingService.confirmComment(confirmCommentData)
   .then(function (result) {
-    console.log('function: reduceInvoice ============>', result, '\n');
+    console.log('function: confirmComment ============>', result, '\n');
   })
   .catch(function (error) {
-    console.log('error reduceInvoice ============>', error);
+    console.log('error confirmComment ============>', error);
+  });
+
+// *****************************************************************
+// #11
+// function: confirmComment
+let unconfirmCommentData = {
+  // ------ REQUIRED ------
+  commentId: 0
+
+  // ------ OPTIONAL ------
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
+};
+podDealingService.unconfirmComment(unconfirmCommentData)
+  .then(function (result) {
+    console.log('function: unconfirmComment ============>', result, '\n');
+  })
+  .catch(function (error) {
+    console.log('error unconfirmComment ============>', error);
+  });
+// *****************************************************************
+// #12
+// function: addDealer
+let addDealerData = {
+  // ------ REQUIRED ------
+  dealerBizId: 0 // ID
+
+  // ------ OPTIONAL ------
+  // allProductAllow: true | false
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
+};
+podDealingService.addDealer(addDealerData)
+  .then(function (result) {
+    console.log('function: addDealer ============>', result, '\n');
+  })
+  .catch(function (error) {
+    console.log('error addDealer ============>', error);
+  });
+
+// *****************************************************************
+// #13
+// function: dealerList
+let dealerListData = {
+  // ------ REQUIRED ------
+
+  // ------ OPTIONAL ------
+  // dealerBizId: ID
+  // enable: true | false
+  // offset: 0
+  // size: 1
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
+};
+
+podDealingService.dealerList(dealerListData)
+  .then(function (result) {
+    console.log('function: dealerList ============>', JSON.stringify(result, null, 2), '\n');
+  })
+  .catch(function (error) {
+    console.log('error dealerList ============>', error);
+  });
+
+// *****************************************************************
+// #14
+// function: enableDealer
+
+let enableDealerData = {
+  // ------ REQUIRED ------
+  dealerBizId: 0 // ID
+
+  // ------ OPTIONAL ------
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
+};
+podDealingService.enableDealer(enableDealerData)
+  .then(function (result) {
+    console.log('function: enableDealer ============>', JSON.stringify(result, null, 2), '\n');
+  })
+  .catch(function (error) {
+    console.log('error enableDealer ============>', error);
+  });
+
+// *****************************************************************
+// #15
+// function: disenableDealer
+
+let disableDealerData = {
+  // ------ REQUIRED ------
+  dealerBizId: 0 // ID
+
+  // ------ OPTIONAL ------
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
+};
+podDealingService.disableDealer(disableDealerData)
+  .then(function (result) {
+    console.log('function: disableDealer ============>', JSON.stringify(result, null, 2), '\n');
+  })
+  .catch(function (error) {
+    console.log('error disableDealer ============>', error);
+  });
+
+// *****************************************************************
+// #16
+// function: businessDealingList
+
+let businessDealingListData = {
+  // ------ REQUIRED ------
+
+  // ------ OPTIONAL ------
+  // dealingBusinessId: ID
+  // enable: true | false
+  // offset: 0
+  // size: 0
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
+};
+
+podDealingService.businessDealingList(businessDealingListData)
+  .then(function (result) {
+    console.log('function: businessDealingList ============>', JSON.stringify(result, null, 2), '\n');
+  })
+  .catch(function (error) {
+    console.log('error businessDealingList ============>', error);
+  });
+
+// *****************************************************************
+// #17
+// function: addDealerProductPermission
+let addDealerProductPermissionData = {
+  // ------ REQUIRED ------
+  dealerBizId: 0,
+  productId: 0
+
+  // ------ OPTIONAL ------
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
+};
+
+podDealingService.addDealerProductPermission(addDealerProductPermissionData)
+  .then(function (result) {
+    console.log('function: addDealerProductPermission ============>', JSON.stringify(result, null, 2), '\n');
+  })
+  .catch(function (error) {
+    console.log('error addDealerProductPermission ============>', error);
+  });
+
+// *****************************************************************
+// #18
+// function: dealerProductPermissionList
+let dealerProductPermissionListData = {
+  // ------ REQUIRED ------
+
+  // ------ OPTIONAL ------
+  // productId: ID
+  // dealerBizId: ID
+  // enable: true | false
+  // offset: 0
+  // size: 0
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
+};
+
+podDealingService.dealerProductPermissionList(dealerProductPermissionListData)
+  .then(function (result) {
+    console.log('function: dealerProductPermissionList ============>', JSON.stringify(result, null, 2), '\n');
+  })
+  .catch(function (error) {
+    console.log('error dealerProductPermissionList ============>', error);
+  });
+
+// *****************************************************************
+// #19
+// function: dealingProductPermissionList
+let dealingProductPermissionListData = {
+  // ------ REQUIRED ------
+
+  // ------ OPTIONAL ------
+  // productId: 0 
+  // dealerBizId: 0 
+  // enable: true | false
+  // offset: 0
+  // size: 0
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
+};
+
+podDealingService.dealingProductPermissionList(dealingProductPermissionListData)
+  .then(function (result) {
+    console.log('function: dealingProductPermissionList ============>', JSON.stringify(result, null, 2), '\n');
+  })
+  .catch(function (error) {
+    console.log('error dealingProductPermissionList ============>', error);
+  });
+
+// *****************************************************************
+// #20
+// function: disableDealerProductPermission
+
+let disableDealerProductPermissionData = {
+  // ------ REQUIRED ------
+  dealerBizId: 0,
+  productId: 0
+
+  // ------ OPTIONAL ------
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
+};
+
+podDealingService.disableDealerProductPermission(disableDealerProductPermissionData)
+  .then(function (result) {
+    console.log('function: disableDealerProductPermission ============>', JSON.stringify(result, null, 2), '\n');
+  })
+  .catch(function (error) {
+    console.log('error disableDealerProductPermission ============>', error);
+  });
+
+// *****************************************************************
+// #21
+// function: enableDealerProductPermissionData
+
+let enableDealerProductPermissionData = {
+  // ------ REQUIRED ------
+  dealerBizId: 0,
+  productId: 0
+
+  // ------ OPTIONAL ------
+  // scVoucherHash: ['HASH#1', 'HASH#2']
+  // token: 'API TOKEN'
+  // tokenIssuer: 0 | 1
+  // scApiKey: ' SC API KEY'
+};
+
+podDealingService.enableDealerProductPermission(enableDealerProductPermissionData)
+  .then(function (result) {
+    console.log('function: enableDealerProductPermission ============>', JSON.stringify(result, null, 2), '\n');
+  })
+  .catch(function (error) {
+    console.log('error enableDealerProductPermission ============>', error);
   });
